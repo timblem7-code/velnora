@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELNORA | Minimalist Premium Store</title>
+    
+    <!-- Speed Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --primary: #0F1F3D;
+            --accent: #D4A017;
+            --white: #ffffff;
+            --text: #333333;
+            --whatsapp-real: #25D366;
+            --success: #27ae60;
+            --daraz-orange: #f85606;
+            --golden-highlight: #FFD700;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+        /* Announcement Bar - Updated with Hover Pause and 6.3s Speed */
+        .announcement-bar { 
+            background: #1a1a1a; 
+            color: #fff; 
+            padding: 12px 0; 
+            font-size: 13px; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            overflow: hidden; 
+            position: relative; 
+            z-index: 100;
+            cursor: pointer;
+        }
+        
+        .slider-content { 
+            display: flex; 
+            white-space: nowrap; 
+            animation: slide-text 6.3s linear infinite; 
+            width: max-content; 
+        }
+
+        /* Stop animation on mouse hover */
+        .announcement-bar:hover .slider-content {
+            animation-play-state: paused;
+        }
+
+        .slider-content span { 
+            padding-right: 100px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        .highlight-promo {
+            color: var(--golden-highlight);
+            font-weight: 800;
+            border-bottom: 1px dashed var(--golden-highlight);
+        }
+
+        @keyframes slide-text { 
+            from { transform: translateX(0); } 
+            to { transform: translateX(-50%); } 
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigation */
+        nav { padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #eee; }
+        .logo-text { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 600; color: var(--text); text-transform: lowercase; }
+        
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .cart-status { background: #000; color: white; padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .cart-status:hover { transform: scale(1.05); background: #333; }
+
+        /* Side Cart Drawer */
+        #side-cart {
+            position: fixed;
+            top: 0;
+            right: -100%; 
+            width: 380px;
+            height: 100%;
+            background: white;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 3000;
+            transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        #side-cart.open { right: 0; }
+        
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 2999;
+            display: none;
+            backdrop-filter: blur(3px);
+        }
+
+        .cart-header { padding: 25px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .cart-items-container { flex: 1; overflow-y: auto; padding: 20px; }
+        .cart-footer { padding: 25px; border-top: 1px solid #eee; background: #fafafa; }
+
+        .empty-cart-msg { text-align: center; color: #999; margin-top: 50px; font-size: 14px; }
+        
+        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: center; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .cart-item-img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; background: #f4f4f4; }
+        .cart-item-info h4 { font-size: 14px; margin-bottom: 5px; }
+        .cart-item-info p { color: var(--daraz-orange); font-weight: 700; font-size: 14px; }
+
+        /* Hero Section */
+        .hero-banner {
+            background: #f4f4f4 url('https://i.postimg.cc/B6P9vqCM/Chat-GPTImage-Feb28202608-31-37A.jpg') no-repeat center center / cover;
+            height: auto; 
+            min-height: 850px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            position: relative; 
+            overflow: hidden; 
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .hero-side-product { position: absolute; height: 75%; bottom: 12.5%; display: flex; align-items: center; z-index: 1; }
+        .hero-side-product img { height: 100%; border-radius: 50%; border: 8px solid rgba(255, 255, 255, 0.4); filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15)); }
+        
+        .left-img { left: -5%; animation: floatLeft 6s ease-in-out infinite; }
+        .right-img { right: -5%; animation: floatRight 6s ease-in-out infinite; }
+
+        @keyframes floatLeft { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-30px) rotate(2deg); } }
+        @keyframes floatRight { 0%, 100% { transform: translateY(0) rotate(5deg); } 50% { transform: translateY(-30px) rotate(-2deg); } }
+
+        .hero-content { z-index: 2; max-width: 700px; padding: 50px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 90%); }
+        .hero-content h1 { font-family: 'Poppins', sans-serif; font-size: clamp(32px, 10vw, 64px); font-weight: 700; margin-bottom: 10px; line-height: 1.1; color: #111; }
+
+        .btn { padding: 18px 40px; font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; border: none; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px; }
+        .btn-dark { background: #000; color: white; width: 100%; }
+        .btn-whatsapp { background: var(--whatsapp-real); color: white; }
+
+        /* Shop Section */
+        .best-selling { padding: 80px 0; background: #fafafa; }
+        .big-product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .big-product-card { cursor: pointer; transition: 0.3s; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
+        .big-product-card:hover { transform: translateY(-10px); }
+        .big-img-frame { width: 100%; aspect-ratio: 1/1; background: #F4F4F4; border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
+        .big-img-frame img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .big-product-card:hover img { transform: scale(1.08); }
+
+        .rating-row { display: flex; align-items: center; gap: 4px; margin-bottom: 10px; }
+        .star-fill { color: #f1c40f; fill: #f1c40f; }
+        .price-text { color: var(--daraz-orange); font-weight: 800; font-size: 22px; margin-bottom: 15px; }
+
+        .btn-add-cart-main {
+            width: 100%;
+            padding: 15px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #000;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+        .btn-add-cart-main:hover {
+            background: #000;
+            color: #fff;
+            transform: scale(1.03);
+        }
+
+        /* Detail Overlay */
+        #product-detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; display: none; overflow-y: auto; padding: 40px 0; }
+        .detail-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px; align-items: center; }
+        .close-detail { position: fixed; top: 20px; right: 20px; background: #000; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2001; }
+
+        @media (max-width: 768px) {
+            .hero-side-product { display: none; }
+            .hero-banner { min-height: 600px; }
+            .hero-content { background: white; padding: 30px; border-radius: 20px; }
+            .big-product-grid { grid-template-columns: 1fr; }
+            #side-cart { width: 100%; right: -100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay background jab cart khulega -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Side Cart Drawer -->
+    <div id="side-cart">
+        <div class="cart-header">
+            <h3 style="font-family: 'Poppins';">Your Shopping Bag</h3>
+            <div onclick="toggleCart()" style="cursor:pointer;"><i data-lucide="x"></i></div>
+        </div>
+        
+        <div class="cart-items-container" id="cart-items-list">
+            <div class="empty-cart-msg">Aapka cart khali hai.</div>
+        </div>
+
+        <div class="cart-footer" id="cart-footer" style="display:none;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:700;">
+                <span>Total Amount:</span>
+                <span id="cart-total-price">Rs. 0</span>
+            </div>
+            <button class="btn btn-dark" onclick="confirmOrder()" style="background: var(--daraz-orange);">
+                CONFIRM ORDER NOW
+            </button>
+            <p style="font-size:10px; text-align:center; color:#888; margin-top:10px;">Free Delivery & Cash on Delivery Available</p>
+        </div>
+    </div>
+
+    <!-- Announcement Bar - Repeating Content for Seamless Loop -->
+    <div class="announcement-bar">
+        <div class="slider-content">
+            <span><i data-lucide="tag" size="16"></i> <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b></span>
+            <span><i data-lucide="truck" size="16"></i> FREE DELIVERY ALL OVER PAKISTAN</span>
+            <span><i data-lucide="shield-check" size="16"></i> 7-DAY EASY RETURN POLICY</span>
+            <!-- Duplicated for Infinite Loop -->
+            <span><i data-lucide="tag" size="16"></i> <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b></span>
+            <span><i data-lucide="truck" size="16"></i> FREE DELIVERY ALL OVER PAKISTAN</span>
+            <span><i data-lucide="shield-check" size="16"></i> 7-DAY EASY RETURN POLICY</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="container">
+        <nav>
+            <a href="#" class="logo-container">
+                <img src="https://i.postimg.cc/k4nht79d/Chat-GPTImage-Feb28202607-16-24A.jpg" alt="Velnora" class="logo-img">
+                <span class="logo-text">velnora.</span>
+            </a>
+            <div class="nav-right">
+                <button onclick="toggleCart()" class="cart-status">
+                    <i data-lucide="shopping-cart" size="16"></i> Cart (<span id="cart-qty">0</span>)
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Banner -->
+    <header class="hero-banner">
+        <div class="hero-side-product left-img"><img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg"></div>
+        <div class="hero-content">
+            <span style="font-size: 11px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 10px;">Premium 2026 Collection</span>
+            <h1>Modern Classy Frames</h1>
+            <p style="color:#555; margin-bottom:20px;">Timeless aesthetics meeting modern craftsmanship. Lightweight, durable, and stylish.</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button onclick="scrollToShop()" class="btn btn-dark" style="background: var(--daraz-orange); width: auto;">EXPLORE NOW</button>
+                <a href="https://wa.me/923706181816" target="_blank" class="btn btn-whatsapp" style="width: auto;">
+                    <i data-lucide="message-circle" size="18"></i> WHATSAPP
+                </a>
+            </div>
+        </div>
+        <div class="hero-side-product right-img"><img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg"></div>
+    </header>
+
+    <!-- Best Selling Section -->
+    <section class="best-selling" id="shop-section">
+        <div class="container">
+            <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                <h2 style="font-family:'Poppins'; font-size:32px;">Our Best Sellers</h2>
+                <p style="color:#888;">Crafted with precision for a professional look.</p>
+            </div>
+            
+            <div class="big-product-grid">
+                <!-- Product 1 -->
+                <div class="big-product-card" onclick="openProductDetail('Velnora Stealth Black', 4500, 'https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg', 'Modern minimalist design with premium matte black finish.')">
+                    <div class="big-img-frame">
+                        <img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg">
+                    </div>
+                    <div style="padding: 10px;">
+                        <div class="rating-row">
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <span style="font-size:12px; color:#999; margin-left:5px;">(5.0)</span>
+                        </div>
+                        <h3 style="font-size: 18px; margin-bottom: 5px;">Velnora Stealth Black</h3>
+                        <p class="price-text">Rs. 4,500</p>
+                        <button class="btn-add-cart-main" onclick="addToCart(event, 'Velnora Stealth Black', 4500, 'https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg')">
+                            <i data-lucide="shopping-bag" size="18"></i> ADD TO CART
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="big-product-card" onclick="openProductDetail('Velnora Silver Frame', 2800, 'https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg', 'Elegant silver frames for a sophisticated professional look.')">
+                    <div class="big-img-frame">
+                        <img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg">
+                    </div>
+                    <div style="padding: 10px;">
+                        <div class="rating-row">
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <i data-lucide="star" size="14" class="star-fill"></i>
+                            <span style="font-size:12px; color:#999; margin-left:5px;">(4.9)</span>
+                        </div>
+                        <h3 style="font-size: 18px; margin-bottom: 5px;">Velnora Silver Frame</h3>
+                        <p class="price-text">Rs. 2,800</p>
+                        <button class="btn-add-cart-main" onclick="addToCart(event, 'Velnora Silver Frame', 2800, 'https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg')">
+                            <i data-lucide="shopping-bag" size="18"></i> ADD TO CART
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Overlay -->
+    <div id="product-detail-overlay">
+        <div class="close-detail" onclick="closeProductDetail()"><i data-lucide="x"></i></div>
+        <div class="detail-container">
+            <div class="detail-image-box"><img id="detail-img" src="" style="width:100%; border-radius:20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);"></div>
+            <div class="detail-info">
+                <h2 id="detail-title" style="font-family: 'Poppins'; font-size: 32px;">Product Name</h2>
+                <p id="detail-price-view" style="font-size: 30px; color: var(--daraz-orange); font-weight: 800; margin-bottom: 15px;"></p>
+                <p id="detail-desc" style="color:#666; margin-bottom:25px;"></p>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <button class="btn btn-dark" style="padding:20px; font-size:16px;" onclick="addToCartFromDetail()">ORDER NOW</button>
+                    <a href="https://wa.me/923706181816" target="_blank" class="btn-add-cart-main" style="padding:18px; border-color:var(--whatsapp-real); color:var(--whatsapp-real);">
+                        <i data-lucide="message-circle"></i> WHATSAPP INQUIRY
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let cartItems = [];
+        let totalPrice = 0;
+        let currentDetailProduct = {};
+
+        function scrollToShop() {
+            document.getElementById('shop-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('side-cart');
+            const overlay = document.getElementById('cart-overlay');
+            drawer.classList.toggle('open');
+            overlay.style.display = drawer.classList.contains('open') ? 'block' : 'none';
+        }
+
+        function addToCart(event, name, price, img) {
+            if(event) event.stopPropagation(); 
+            cartItems.push({ name, price, img });
+            updateCartUI();
+            if(!document.getElementById('side-cart').classList.contains('open')) {
+                toggleCart();
+            }
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items-list');
+            const footer = document.getElementById('cart-footer');
+            const qtyLabel = document.getElementById('cart-qty');
+            const totalLabel = document.getElementById('cart-total-price');
+
+            if(cartItems.length === 0) {
+                list.innerHTML = '<div class="empty-cart-msg">Aapka cart khali hai.</div>';
+                footer.style.display = 'none';
+                qtyLabel.innerText = '0';
+                return;
+            }
+
+            list.innerHTML = '';
+            totalPrice = 0;
+            
+            cartItems.forEach((item, index) => {
+                totalPrice += item.price;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>Rs. ${item.price.toLocaleString()}</p>
+                            <span onclick="removeItem(${index})" style="font-size:10px; color:red; cursor:pointer;">Remove</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            footer.style.display = 'block';
+            qtyLabel.innerText = cartItems.length;
+            totalLabel.innerText = "Rs. " + totalPrice.toLocaleString();
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            updateCartUI();
+        }
+
+        function confirmOrder() {
+            const message = "Velnora Order Confirmation!%0A" + 
+                           cartItems.map(i => `- ${i.name} (Rs. ${i.price})`).join("%0A") + 
+                           "%0A%0ATotal: Rs. " + totalPrice;
+            window.open(`https://wa.me/923706181816?text=${message}`, '_blank');
+        }
+
+        function openProductDetail(title, price, img, desc) {
+            currentDetailProduct = { title, price, img };
+            document.getElementById('detail-title').innerText = title;
+            document.getElementById('detail-price-view').innerText = "Rs. " + price.toLocaleString();
+            document.getElementById('detail-img').src = img;
+            document.getElementById('detail-desc').innerText = desc;
+            document.getElementById('product-detail-overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function addToCartFromDetail() {
+            addToCart(null, currentDetailProduct.title, currentDetailProduct.price, currentDetailProduct.img);
+            closeProductDetail();
+        }
+
+        function closeProductDetail() {
+            document.getElementById('product-detail-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
