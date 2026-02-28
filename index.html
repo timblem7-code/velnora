@@ -119,125 +119,131 @@
         .cart-item-info h4 { font-size: 14px; margin-bottom: 5px; }
         .cart-item-info p { color: var(--daraz-orange); font-weight: 700; font-size: 14px; }
 
-        /* Hero Section - Improved for Mobile Adaptation */
+        /* Hero Section */
         .hero-banner {
             background: #f4f4f4;
             min-height: 85vh;
             display: flex; 
-            flex-direction: column;
+            flex-direction: row; 
             align-items: center; 
-            justify-content: center; 
+            justify-content: space-around; 
             position: relative; 
             overflow: hidden; 
             text-align: center;
-            padding: 100px 20px;
+            padding: 60px 20px;
         }
         
         .hero-side-product { 
-            position: absolute; 
-            height: 60%; 
-            display: flex; 
-            align-items: center; 
-            z-index: 1; 
-            pointer-events: none;
+            position: relative; 
+            width: 25%;
+            height: auto;
+            z-index: 2; 
         }
         .hero-side-product img { 
-            height: 100%; 
-            width: auto;
+            width: 100%;
+            height: auto;
             border-radius: 50%; 
-            border: 8px solid rgba(255, 255, 255, 0.4); 
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15)); 
+            border: 6px solid #fff; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: 0.5s;
         }
         
-        .left-img { left: -5%; animation: floatLeft 6s ease-in-out infinite; }
-        .right-img { right: -5%; animation: floatRight 6s ease-in-out infinite; }
+        .left-img { animation: floatAnim 5s ease-in-out infinite; }
+        .right-img { animation: floatAnim 5s ease-in-out infinite reverse; }
 
-        @keyframes floatLeft { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-30px) rotate(2deg); } }
-        @keyframes floatRight { 0%, 100% { transform: translateY(0) rotate(5deg); } 50% { transform: translateY(-30px) rotate(-2deg); } }
+        @keyframes floatAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-        .hero-content { z-index: 2; max-width: 650px; position: relative; }
-        .hero-content h1 { font-family: 'Poppins', sans-serif; font-size: clamp(36px, 12vw, 72px); font-weight: 700; margin-bottom: 10px; line-height: 1.1; color: #111; }
+        .hero-content { z-index: 10; max-width: 500px; padding: 0 20px; }
+        .hero-content h1 { font-family: 'Poppins', sans-serif; font-size: 48px; font-weight: 700; margin-bottom: 15px; line-height: 1.1; color: #111; }
 
-        .btn { padding: 18px 40px; font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; border: none; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px; }
-        .btn-dark { background: #000; color: white; width: auto; }
+        /* Button Styling */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .btn { 
+            padding: 16px 28px; 
+            font-size: 13px; 
+            font-weight: 700; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            cursor: pointer; 
+            border: none; 
+            transition: 0.4s; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .btn-now { background: var(--daraz-orange); color: white; }
+        .btn-now:hover { background: #e04a05; transform: translateY(-2px); }
+        
         .btn-whatsapp { background: var(--whatsapp-real); color: white; }
+        .btn-whatsapp:hover { background: #1eb956; transform: translateY(-2px); }
 
         /* Shop Section */
         .best-selling { padding: 80px 0; background: #fafafa; }
-        .big-product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .big-product-card { cursor: pointer; transition: 0.3s; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
+        .big-product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .big-product-card { cursor: pointer; transition: 0.3s; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
         .big-product-card:hover { transform: translateY(-10px); }
         .big-img-frame { width: 100%; aspect-ratio: 1/1; background: #F4F4F4; border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
         .big-img-frame img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .big-product-card:hover img { transform: scale(1.08); }
 
         .rating-row { display: flex; align-items: center; gap: 4px; margin-bottom: 10px; }
         .star-fill { color: #f1c40f; fill: #f1c40f; }
-        .price-text { color: var(--daraz-orange); font-weight: 800; font-size: 22px; margin-bottom: 15px; }
+        .price-text { color: var(--daraz-orange); font-weight: 800; font-size: 20px; margin-bottom: 15px; }
 
-        .btn-add-cart-main {
-            width: 100%;
-            padding: 15px;
-            background: #fff;
-            color: #000;
-            border: 2px solid #000;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-transform: uppercase;
-        }
-        .btn-add-cart-main:hover {
-            background: #000;
-            color: #fff;
-        }
-
-        /* Detail Overlay */
-        #product-detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; display: none; overflow-y: auto; padding: 40px 0; }
-        .detail-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px; align-items: center; }
-        .close-detail { position: fixed; top: 20px; right: 20px; background: #000; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2001; }
-
-        /* Mobile Specific Responsive Fixes */
+        /* MOBILE OPTIMIZATIONS */
         @media (max-width: 768px) {
             .hero-banner { 
-                min-height: 70vh; 
-                padding: 60px 20px; 
+                flex-direction: column; 
+                padding: 40px 15px;
+                min-height: auto;
             }
-            /* Making side images smaller but visible on mobile */
-            .hero-side-product { 
-                height: 35%; 
-                opacity: 0.8;
+            .hero-images-mobile-row {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                width: 100%;
+                margin-bottom: 20px;
+                order: 1;
             }
-            .left-img { 
-                left: -15%; 
-            }
-            .right-img { 
-                right: -15%; 
-            }
-            .hero-content h1 { 
-                font-size: 38px; 
-            }
-            .hero-content p { 
-                font-size: 14px; 
-                padding: 0 10px;
-            }
-            .big-product-grid { 
-                grid-template-columns: 1fr; 
-            }
-            #side-cart { 
-                width: 100%; 
-                right: -100%; 
+            .hero-side-product {
+                width: 45%;
+                margin-bottom: 0;
             }
             .hero-content {
-                background: rgba(244, 244, 244, 0.7);
-                backdrop-filter: blur(5px);
-                padding: 20px;
-                border-radius: 30px;
+                order: 2;
+                max-width: 100%;
+                background: #fff;
+                padding: 30px 20px;
+                border-radius: 25px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.05);
             }
+            .hero-content h1 { font-size: 32px; }
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn {
+                max-width: 100%;
+                width: 100%;
+                padding: 18px;
+            }
+            .desktop-only-images { display: none; }
+            .mobile-only-images { display: flex; }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-only-images { display: none; }
         }
     </style>
 </head>
@@ -245,40 +251,32 @@
 
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
 
+    <!-- Side Cart -->
     <div id="side-cart">
         <div class="cart-header">
-            <h3 style="font-family: 'Poppins';">Your Shopping Bag</h3>
+            <h3>Shopping Bag</h3>
             <div onclick="toggleCart()" style="cursor:pointer;"><i data-lucide="x"></i></div>
         </div>
-        
         <div class="cart-items-container" id="cart-items-list">
             <div class="empty-cart-msg">Aapka cart khali hai.</div>
         </div>
-
         <div class="cart-footer" id="cart-footer" style="display:none;">
             <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:700;">
-                <span>Total Amount:</span>
+                <span>Total:</span>
                 <span id="cart-total-price">Rs. 0</span>
             </div>
-            <button class="btn btn-dark" onclick="confirmOrder()" style="background: var(--daraz-orange); width:100%;">
-                CONFIRM ORDER NOW
+            <button class="btn btn-now" onclick="confirmOrder()" style="width:100%; max-width: none; border-radius: 12px;">
+                CONFIRM ON WHATSAPP
             </button>
-            <p style="font-size:10px; text-align:center; color:#888; margin-top:10px;">Free Delivery & Cash on Delivery Available</p>
         </div>
     </div>
 
+    <!-- Top Bar -->
     <div class="announcement-bar">
         <div class="slider-content">
-            <span onclick="scrollToShop()">
-                <i data-lucide="tag" size="16"></i> 
-                <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b>
-            </span>
-            <span><i data-lucide="truck" size="16"></i> FREE DELIVERY ALL OVER PAKISTAN</span>
-            <span><i data-lucide="shield-check" size="16"></i> 7-DAY EASY RETURN POLICY</span>
-            <span onclick="scrollToShop()">
-                <i data-lucide="tag" size="16"></i> 
-                <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b>
-            </span>
+            <span><i data-lucide="truck"></i> FREE DELIVERY ALL OVER PAKISTAN</span>
+            <span><i data-lucide="tag"></i> USE CODE: VELNORA50 FOR 50% OFF</span>
+            <span><i data-lucide="shield-check"></i> PREMIUM QUALITY GUARANTEED</span>
         </div>
     </div>
 
@@ -290,94 +288,84 @@
             </a>
             <div class="nav-right">
                 <button onclick="toggleCart()" class="cart-status">
-                    <i data-lucide="shopping-cart" size="16"></i> Cart (<span id="cart-qty">0</span>)
+                    <i data-lucide="shopping-cart" size="16"></i> <span id="cart-qty">0</span>
                 </button>
             </div>
         </nav>
     </div>
 
     <header class="hero-banner">
-        <div class="hero-side-product left-img"><img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg"></div>
+        <!-- Desktop Images -->
+        <div class="hero-side-product left-img desktop-only-images">
+            <img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg" alt="Frame 1">
+        </div>
+
+        <!-- Mobile Image Row -->
+        <div class="hero-images-mobile-row mobile-only-images">
+            <div class="hero-side-product"><img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg"></div>
+            <div class="hero-side-product"><img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg"></div>
+        </div>
+
         <div class="hero-content">
-            <span style="font-size: 11px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 10px;">Premium 2026 Collection</span>
+            <span style="font-size: 10px; color: var(--accent); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Premium Eyewear</span>
             <h1>Modern Classy Frames</h1>
-            <p style="color:#555; margin-bottom:25px;">Timeless aesthetics meeting modern craftsmanship. Lightweight and stylish.</p>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button onclick="scrollToShop()" class="btn btn-dark" style="background: var(--daraz-orange);">EXPLORE NOW</button>
+            <p style="color:#666; margin-bottom:10px;">Upgrade your style with our handpicked premium collection. Durable, lightweight, and crystal clear.</p>
+            
+            <!-- Dual Buttons -->
+            <div class="btn-group">
+                <button onclick="scrollToShop()" class="btn btn-now">
+                    <i data-lucide="shopping-bag" size="18"></i> ORDER NOW
+                </button>
                 <a href="https://wa.me/923706181816" target="_blank" class="btn btn-whatsapp">
                     <i data-lucide="message-circle" size="18"></i> WHATSAPP
                 </a>
             </div>
         </div>
-        <div class="hero-side-product right-img"><img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg"></div>
+
+        <div class="hero-side-product right-img desktop-only-images">
+            <img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg" alt="Frame 2">
+        </div>
     </header>
 
     <section class="best-selling" id="shop-section">
         <div class="container">
-            <div class="section-header" style="text-align:center; margin-bottom:50px;">
-                <h2 style="font-family:'Poppins'; font-size:32px;">Our Best Sellers</h2>
-                <p style="color:#888;">Crafted with precision for a professional look.</p>
-            </div>
-            
+            <h2 style="text-align:center; margin-bottom:40px; font-family:'Poppins';">Latest Arrivals</h2>
             <div class="big-product-grid">
-                <div class="big-product-card" onclick="openProductDetail('Velnora Stealth Black', 4500, 'https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg', 'Modern minimalist design with premium matte black finish.')">
-                    <div class="big-img-frame">
-                        <img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg">
-                    </div>
-                    <div style="padding: 10px;">
-                        <div class="rating-row">
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <span style="font-size:12px; color:#999; margin-left:5px;">(5.0)</span>
-                        </div>
-                        <h3 style="font-size: 18px; margin-bottom: 5px;">Velnora Stealth Black</h3>
-                        <p class="price-text">Rs. 4,500</p>
-                        <button class="btn-add-cart-main" onclick="addToCart(event, 'Velnora Stealth Black', 4500, 'https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg')">
-                            <i data-lucide="shopping-bag" size="18"></i> ADD TO CART
-                        </button>
+                <!-- Product 1 -->
+                <div class="big-product-card" onclick="openProductDetail('Velnora Stealth Black', 4500, 'https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg', 'Matte black premium finish with ultra-lightweight material.')">
+                    <div class="big-img-frame"><img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg"></div>
+                    <h3 style="font-size:16px;">Velnora Stealth Black</h3>
+                    <p class="price-text">Rs. 4,500</p>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn btn-now" style="font-size:10px; padding:12px; max-width:none;" onclick="addToCart(event, 'Velnora Stealth Black', 4500, 'https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg')">ADD TO CART</button>
                     </div>
                 </div>
 
-                <div class="big-product-card" onclick="openProductDetail('Velnora Silver Frame', 2800, 'https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg', 'Elegant silver frames for a sophisticated professional look.')">
-                    <div class="big-img-frame">
-                        <img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg">
-                    </div>
-                    <div style="padding: 10px;">
-                        <div class="rating-row">
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <i data-lucide="star" size="14" class="star-fill"></i>
-                            <span style="font-size:12px; color:#999; margin-left:5px;">(4.9)</span>
-                        </div>
-                        <h3 style="font-size: 18px; margin-bottom: 5px;">Velnora Silver Frame</h3>
-                        <p class="price-text">Rs. 2,800</p>
-                        <button class="btn-add-cart-main" onclick="addToCart(event, 'Velnora Silver Frame', 2800, 'https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg')">
-                            <i data-lucide="shopping-bag" size="18"></i> ADD TO CART
-                        </button>
+                <!-- Product 2 -->
+                <div class="big-product-card" onclick="openProductDetail('Velnora Silver Elite', 2800, 'https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg', 'Sophisticated silver metallic frames for a clean professional look.')">
+                    <div class="big-img-frame"><img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg"></div>
+                    <h3 style="font-size:16px;">Velnora Silver Elite</h3>
+                    <p class="price-text">Rs. 2,800</p>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn btn-now" style="font-size:10px; padding:12px; max-width:none;" onclick="addToCart(event, 'Velnora Silver Elite', 2800, 'https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg')">ADD TO CART</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="product-detail-overlay">
-        <div class="close-detail" onclick="closeProductDetail()"><i data-lucide="x"></i></div>
-        <div class="detail-container">
-            <div class="detail-image-box"><img id="detail-img" src="" style="width:100%; border-radius:20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);"></div>
+    <!-- Product Detail Overlay -->
+    <div id="product-detail-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; display: none; overflow-y: auto; padding: 40px 0;">
+        <div style="position: fixed; top: 20px; right: 20px; background: #000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2001;" onclick="closeProductDetail()"><i data-lucide="x"></i></div>
+        <div style="max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center;">
+            <div><img id="detail-img" src="" style="width:100%; border-radius:15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"></div>
             <div class="detail-info">
-                <h2 id="detail-title" style="font-family: 'Poppins'; font-size: 32px;">Product Name</h2>
-                <p id="detail-price-view" style="font-size: 30px; color: var(--daraz-orange); font-weight: 800; margin-bottom: 15px;"></p>
-                <p id="detail-desc" style="color:#666; margin-bottom:25px;"></p>
-                <div style="display: flex; flex-direction: column; gap: 15px;">
-                    <button class="btn btn-dark" style="padding:20px; font-size:16px;" onclick="addToCartFromDetail()">ORDER NOW</button>
-                    <a href="https://wa.me/923706181816" target="_blank" class="btn-add-cart-main" style="padding:18px; border-color:var(--whatsapp-real); color:var(--whatsapp-real);">
-                        <i data-lucide="message-circle"></i> WHATSAPP INQUIRY
-                    </a>
+                <h2 id="detail-title" style="margin-bottom:10px; font-family: 'Poppins';"></h2>
+                <p id="detail-price-view" style="font-size:24px; color:var(--daraz-orange); font-weight:800;"></p>
+                <p id="detail-desc" style="margin:20px 0; color:#555;"></p>
+                <div class="btn-group" style="justify-content: flex-start;">
+                    <button class="btn btn-now" onclick="addToCartFromDetail()">ORDER NOW</button>
+                    <a id="detail-wa-link" href="https://wa.me/923706181816" target="_blank" class="btn btn-whatsapp">WHATSAPP</a>
                 </div>
             </div>
         </div>
@@ -385,45 +373,42 @@
 
     <script>
         lucide.createIcons();
-        let cartItems = [];
-        let totalQty = 0;
+        let cart = [];
         let totalPrice = 0;
-        let currentDetailProduct = {};
+        let currentProd = {};
 
-        function scrollToShop() {
-            document.getElementById('shop-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
+        function scrollToShop() { document.getElementById('shop-section').scrollIntoView({ behavior: 'smooth' }); }
+        
         function toggleCart() {
-            const drawer = document.getElementById('side-cart');
+            const el = document.getElementById('side-cart');
             const overlay = document.getElementById('cart-overlay');
-            drawer.classList.toggle('open');
-            overlay.style.display = drawer.classList.contains('open') ? 'block' : 'none';
+            el.classList.toggle('open');
+            overlay.style.display = el.classList.contains('open') ? 'block' : 'none';
         }
 
-        function addToCart(event, name, price, img) {
-            if(event) event.stopPropagation(); 
-            cartItems.push({ name, price, img });
-            updateCartUI();
+        function addToCart(e, name, price, img) {
+            if(e) e.stopPropagation();
+            cart.push({name, price, img});
+            updateUI();
             if(!document.getElementById('side-cart').classList.contains('open')) toggleCart();
         }
 
-        function updateCartUI() {
+        function updateUI() {
             const list = document.getElementById('cart-items-list');
             const footer = document.getElementById('cart-footer');
-            const qtyLabel = document.getElementById('cart-qty');
-            const totalLabel = document.getElementById('cart-total-price');
+            const qty = document.getElementById('cart-qty');
+            const total = document.getElementById('cart-total-price');
 
-            if(cartItems.length === 0) {
+            if(cart.length === 0) {
                 list.innerHTML = '<div class="empty-cart-msg">Aapka cart khali hai.</div>';
                 footer.style.display = 'none';
-                qtyLabel.innerText = '0';
+                qty.innerText = '0';
                 return;
             }
 
             list.innerHTML = '';
             totalPrice = 0;
-            cartItems.forEach((item, index) => {
+            cart.forEach((item, idx) => {
                 totalPrice += item.price;
                 list.innerHTML += `
                     <div class="cart-item">
@@ -431,46 +416,42 @@
                         <div class="cart-item-info">
                             <h4>${item.name}</h4>
                             <p>Rs. ${item.price.toLocaleString()}</p>
-                            <span onclick="removeItem(${index})" style="font-size:10px; color:red; cursor:pointer;">Remove</span>
+                            <span onclick="remove(${idx})" style="color:red; font-size:10px; cursor:pointer;">Remove</span>
                         </div>
                     </div>
                 `;
             });
             footer.style.display = 'block';
-            qtyLabel.innerText = cartItems.length;
-            totalLabel.innerText = "Rs. " + totalPrice.toLocaleString();
+            qty.innerText = cart.length;
+            total.innerText = "Rs. " + totalPrice.toLocaleString();
         }
 
-        function removeItem(index) {
-            cartItems.splice(index, 1);
-            updateCartUI();
-        }
+        function remove(i) { cart.splice(i, 1); updateUI(); }
 
         function confirmOrder() {
-            const message = "Velnora Order Confirmation!%0A" + 
-                           cartItems.map(i => `- ${i.name} (Rs. ${i.price})`).join("%0A") + 
-                           "%0A%0ATotal: Rs. " + totalPrice;
-            window.open(`https://wa.me/923706181816?text=${message}`, '_blank');
+            const text = "Velnora Order!%0A" + cart.map(c => `- ${c.name}`).join("%0A") + "%0A%0ATotal: Rs. " + totalPrice;
+            window.open(`https://wa.me/923706181816?text=${text}`, '_blank');
         }
 
         function openProductDetail(title, price, img, desc) {
-            currentDetailProduct = { title, price, img };
+            currentProd = {title, price, img};
             document.getElementById('detail-title').innerText = title;
             document.getElementById('detail-price-view').innerText = "Rs. " + price.toLocaleString();
             document.getElementById('detail-img').src = img;
             document.getElementById('detail-desc').innerText = desc;
+            document.getElementById('detail-wa-link').href = `https://wa.me/923706181816?text=Hi, I am interested in ${title}`;
             document.getElementById('product-detail-overlay').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
-        function addToCartFromDetail() {
-            addToCart(null, currentDetailProduct.title, currentDetailProduct.price, currentDetailProduct.img);
-            closeProductDetail();
+        function closeProductDetail() { 
+            document.getElementById('product-detail-overlay').style.display = 'none'; 
+            document.body.style.overflow = 'auto';
         }
 
-        function closeProductDetail() {
-            document.getElementById('product-detail-overlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        function addToCartFromDetail() {
+            addToCart(null, currentProd.title, currentProd.price, currentProd.img);
+            closeProductDetail();
         }
     </script>
 </body>
