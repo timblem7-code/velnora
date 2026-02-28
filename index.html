@@ -27,7 +27,7 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-        /* Announcement Bar - Updated with Hover Pause and 6.3s Speed */
+        /* Announcement Bar */
         .announcement-bar { 
             background: #1a1a1a; 
             color: #fff; 
@@ -38,19 +38,13 @@
             overflow: hidden; 
             position: relative; 
             z-index: 100;
-            cursor: pointer;
         }
         
         .slider-content { 
             display: flex; 
             white-space: nowrap; 
-            animation: slide-text 6.3s linear infinite; 
+            animation: slide-text 25s linear infinite; 
             width: max-content; 
-        }
-
-        /* Stop animation on mouse hover */
-        .announcement-bar:hover .slider-content {
-            animation-play-state: paused;
         }
 
         .slider-content span { 
@@ -58,6 +52,7 @@
             display: flex; 
             align-items: center; 
             gap: 10px; 
+            cursor: pointer; 
         }
 
         .highlight-promo {
@@ -117,17 +112,17 @@
 
         .empty-cart-msg { text-align: center; color: #999; margin-top: 50px; font-size: 14px; }
         
+        /* Cart Item Design */
         .cart-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: center; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
         .cart-item-img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; background: #f4f4f4; }
         .cart-item-info h4 { font-size: 14px; margin-bottom: 5px; }
         .cart-item-info p { color: var(--daraz-orange); font-weight: 700; font-size: 14px; }
 
-        /* Hero Section */
+        /* Hero Section - Improved for Mobile Adaptation */
         .hero-banner {
-            background: #f4f4f4 url('https://i.postimg.cc/B6P9vqCM/Chat-GPTImage-Feb28202608-31-37A.jpg') no-repeat center center / cover;
-            height: auto; 
-            min-height: 850px;
+            background: #f4f4f4;
+            min-height: 85vh;
             display: flex; 
             flex-direction: column;
             align-items: center; 
@@ -138,8 +133,21 @@
             padding: 100px 20px;
         }
         
-        .hero-side-product { position: absolute; height: 75%; bottom: 12.5%; display: flex; align-items: center; z-index: 1; }
-        .hero-side-product img { height: 100%; border-radius: 50%; border: 8px solid rgba(255, 255, 255, 0.4); filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15)); }
+        .hero-side-product { 
+            position: absolute; 
+            height: 60%; 
+            display: flex; 
+            align-items: center; 
+            z-index: 1; 
+            pointer-events: none;
+        }
+        .hero-side-product img { 
+            height: 100%; 
+            width: auto;
+            border-radius: 50%; 
+            border: 8px solid rgba(255, 255, 255, 0.4); 
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15)); 
+        }
         
         .left-img { left: -5%; animation: floatLeft 6s ease-in-out infinite; }
         .right-img { right: -5%; animation: floatRight 6s ease-in-out infinite; }
@@ -147,11 +155,11 @@
         @keyframes floatLeft { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-30px) rotate(2deg); } }
         @keyframes floatRight { 0%, 100% { transform: translateY(0) rotate(5deg); } 50% { transform: translateY(-30px) rotate(-2deg); } }
 
-        .hero-content { z-index: 2; max-width: 700px; padding: 50px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 90%); }
-        .hero-content h1 { font-family: 'Poppins', sans-serif; font-size: clamp(32px, 10vw, 64px); font-weight: 700; margin-bottom: 10px; line-height: 1.1; color: #111; }
+        .hero-content { z-index: 2; max-width: 650px; position: relative; }
+        .hero-content h1 { font-family: 'Poppins', sans-serif; font-size: clamp(36px, 12vw, 72px); font-weight: 700; margin-bottom: 10px; line-height: 1.1; color: #111; }
 
         .btn { padding: 18px 40px; font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; border: none; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px; }
-        .btn-dark { background: #000; color: white; width: 100%; }
+        .btn-dark { background: #000; color: white; width: auto; }
         .btn-whatsapp { background: var(--whatsapp-real); color: white; }
 
         /* Shop Section */
@@ -186,7 +194,6 @@
         .btn-add-cart-main:hover {
             background: #000;
             color: #fff;
-            transform: scale(1.03);
         }
 
         /* Detail Overlay */
@@ -194,21 +201,50 @@
         .detail-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px; align-items: center; }
         .close-detail { position: fixed; top: 20px; right: 20px; background: #000; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2001; }
 
+        /* Mobile Specific Responsive Fixes */
         @media (max-width: 768px) {
-            .hero-side-product { display: none; }
-            .hero-banner { min-height: 600px; }
-            .hero-content { background: white; padding: 30px; border-radius: 20px; }
-            .big-product-grid { grid-template-columns: 1fr; }
-            #side-cart { width: 100%; right: -100%; }
+            .hero-banner { 
+                min-height: 70vh; 
+                padding: 60px 20px; 
+            }
+            /* Making side images smaller but visible on mobile */
+            .hero-side-product { 
+                height: 35%; 
+                opacity: 0.8;
+            }
+            .left-img { 
+                left: -15%; 
+            }
+            .right-img { 
+                right: -15%; 
+            }
+            .hero-content h1 { 
+                font-size: 38px; 
+            }
+            .hero-content p { 
+                font-size: 14px; 
+                padding: 0 10px;
+            }
+            .big-product-grid { 
+                grid-template-columns: 1fr; 
+            }
+            #side-cart { 
+                width: 100%; 
+                right: -100%; 
+            }
+            .hero-content {
+                background: rgba(244, 244, 244, 0.7);
+                backdrop-filter: blur(5px);
+                padding: 20px;
+                border-radius: 30px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Overlay background jab cart khulega -->
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
 
-    <!-- Side Cart Drawer -->
     <div id="side-cart">
         <div class="cart-header">
             <h3 style="font-family: 'Poppins';">Your Shopping Bag</h3>
@@ -224,27 +260,28 @@
                 <span>Total Amount:</span>
                 <span id="cart-total-price">Rs. 0</span>
             </div>
-            <button class="btn btn-dark" onclick="confirmOrder()" style="background: var(--daraz-orange);">
+            <button class="btn btn-dark" onclick="confirmOrder()" style="background: var(--daraz-orange); width:100%;">
                 CONFIRM ORDER NOW
             </button>
             <p style="font-size:10px; text-align:center; color:#888; margin-top:10px;">Free Delivery & Cash on Delivery Available</p>
         </div>
     </div>
 
-    <!-- Announcement Bar - Repeating Content for Seamless Loop -->
     <div class="announcement-bar">
         <div class="slider-content">
-            <span><i data-lucide="tag" size="16"></i> <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b></span>
+            <span onclick="scrollToShop()">
+                <i data-lucide="tag" size="16"></i> 
+                <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b>
+            </span>
             <span><i data-lucide="truck" size="16"></i> FREE DELIVERY ALL OVER PAKISTAN</span>
             <span><i data-lucide="shield-check" size="16"></i> 7-DAY EASY RETURN POLICY</span>
-            <!-- Duplicated for Infinite Loop -->
-            <span><i data-lucide="tag" size="16"></i> <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b></span>
-            <span><i data-lucide="truck" size="16"></i> FREE DELIVERY ALL OVER PAKISTAN</span>
-            <span><i data-lucide="shield-check" size="16"></i> 7-DAY EASY RETURN POLICY</span>
+            <span onclick="scrollToShop()">
+                <i data-lucide="tag" size="16"></i> 
+                <b class="highlight-promo">GET 50% OFF WITH CODE: VELNORA50</b>
+            </span>
         </div>
     </div>
 
-    <!-- Navigation -->
     <div class="container">
         <nav>
             <a href="#" class="logo-container">
@@ -259,16 +296,15 @@
         </nav>
     </div>
 
-    <!-- Hero Banner -->
     <header class="hero-banner">
         <div class="hero-side-product left-img"><img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg"></div>
         <div class="hero-content">
             <span style="font-size: 11px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 10px;">Premium 2026 Collection</span>
             <h1>Modern Classy Frames</h1>
-            <p style="color:#555; margin-bottom:20px;">Timeless aesthetics meeting modern craftsmanship. Lightweight, durable, and stylish.</p>
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <button onclick="scrollToShop()" class="btn btn-dark" style="background: var(--daraz-orange); width: auto;">EXPLORE NOW</button>
-                <a href="https://wa.me/923706181816" target="_blank" class="btn btn-whatsapp" style="width: auto;">
+            <p style="color:#555; margin-bottom:25px;">Timeless aesthetics meeting modern craftsmanship. Lightweight and stylish.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="scrollToShop()" class="btn btn-dark" style="background: var(--daraz-orange);">EXPLORE NOW</button>
+                <a href="https://wa.me/923706181816" target="_blank" class="btn btn-whatsapp">
                     <i data-lucide="message-circle" size="18"></i> WHATSAPP
                 </a>
             </div>
@@ -276,7 +312,6 @@
         <div class="hero-side-product right-img"><img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg"></div>
     </header>
 
-    <!-- Best Selling Section -->
     <section class="best-selling" id="shop-section">
         <div class="container">
             <div class="section-header" style="text-align:center; margin-bottom:50px;">
@@ -285,7 +320,6 @@
             </div>
             
             <div class="big-product-grid">
-                <!-- Product 1 -->
                 <div class="big-product-card" onclick="openProductDetail('Velnora Stealth Black', 4500, 'https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg', 'Modern minimalist design with premium matte black finish.')">
                     <div class="big-img-frame">
                         <img src="https://i.postimg.cc/FRWNnWH1/Whats-App-Image2026-02-23at10-33-04PM.jpg">
@@ -307,7 +341,6 @@
                     </div>
                 </div>
 
-                <!-- Product 2 -->
                 <div class="big-product-card" onclick="openProductDetail('Velnora Silver Frame', 2800, 'https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg', 'Elegant silver frames for a sophisticated professional look.')">
                     <div class="big-img-frame">
                         <img src="https://i.postimg.cc/q72GLSQh/Whats-App-Image2026-02-23at10-32-47PM.jpg">
@@ -332,7 +365,6 @@
         </div>
     </section>
 
-    <!-- Product Detail Overlay -->
     <div id="product-detail-overlay">
         <div class="close-detail" onclick="closeProductDetail()"><i data-lucide="x"></i></div>
         <div class="detail-container">
@@ -354,6 +386,7 @@
     <script>
         lucide.createIcons();
         let cartItems = [];
+        let totalQty = 0;
         let totalPrice = 0;
         let currentDetailProduct = {};
 
@@ -372,9 +405,7 @@
             if(event) event.stopPropagation(); 
             cartItems.push({ name, price, img });
             updateCartUI();
-            if(!document.getElementById('side-cart').classList.contains('open')) {
-                toggleCart();
-            }
+            if(!document.getElementById('side-cart').classList.contains('open')) toggleCart();
         }
 
         function updateCartUI() {
@@ -392,7 +423,6 @@
 
             list.innerHTML = '';
             totalPrice = 0;
-            
             cartItems.forEach((item, index) => {
                 totalPrice += item.price;
                 list.innerHTML += `
@@ -406,7 +436,6 @@
                     </div>
                 `;
             });
-
             footer.style.display = 'block';
             qtyLabel.innerText = cartItems.length;
             totalLabel.innerText = "Rs. " + totalPrice.toLocaleString();
